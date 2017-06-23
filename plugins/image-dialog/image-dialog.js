@@ -35,7 +35,10 @@
                 var _loading = dialog.find("." + classPrefix + "dialog-mask");
                 _loading[(show) ? "show" : "hide"]();
             };
-
+            var acceptstr = "";
+            settings.imageFormats.forEach(function (e) {
+                acceptstr = acceptstr + "image/" + e + ",";
+            });
             if (editor.find("." + dialogName).length < 1)
             {
                 var guid   = (new Date).getTime();
@@ -51,7 +54,7 @@
                                         "<label>" + imageLang.url + "</label>" +
                                         "<input type=\"text\" data-url />" + (function(){
                                             return (settings.imageUpload) ? "<div class=\"" + classPrefix + "file-input\">" +
-                                                                                "<input type=\"file\" name=\"" + classPrefix + "image-file\" accept=\"image/*\" />" +
+                                                                                "<input type=\"file\" name=\"" + classPrefix + "image-file\" accept=\""+ acceptstr +"\" />" +
                                                                                 "<input type=\"submit\" value=\"" + imageLang.uploadButton + "\" />" +
                                                                             "</div>" : "";
                                         })() +
